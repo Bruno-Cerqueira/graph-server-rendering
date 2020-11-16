@@ -1,0 +1,23 @@
+{
+  "name": "graph-server-rendering",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bruno-Cerqueira/graph-server-rendering.git"
+  },
+  "author": "Bruno-Cerqueira",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Bruno-Cerqueira/graph-server-rendering/issues"
+  },
+  "homepage": "https://github.com/Bruno-Cerqueira/graph-server-rendering#readme",
+  "dependencies": {
+    "d3": "^6.2.0",
+    "jsdom": "^16.4.0"
+  }
+}
