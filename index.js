@@ -1,6 +1,9 @@
 var fs = require('fs');
 var d3 = require('d3');
 var JSDOM = require('jsdom').JSDOM;
+var path = require('path');
+
+var mainCss = fs.readFileSync(path.normalize(__dirname + "/index.css"), 'utf8');
 
 const TOTAL_TIME = 2.8 // seconds
 const MV_BY_5MM = 0.5 // 5 mm = 0.5 mV
@@ -20,7 +23,16 @@ const STROKE_1 = 0.2
 
 var outputLocation = 'test.svg';
 		
-const window = (new JSDOM(`<html><head></head><body></body></html>`, { pretendToBeVisual: true })).window;
+
+const {document} = (new JSDOM('<!doctype html><html><body></body></html>')).window;  
+global.document = document;  
+global.window = document.defaultView;
+var head = document.getElementsByTagName('head')[0];
+style = document.createElement("style");
+style.type = 'text/css';
+style.innerHTML = mainCss;
+head.appendChild(style);
+
 window.d3 = d3.select(window.document);
 const selector = 'body';
 
@@ -29,6 +41,7 @@ function createSvgChart(selector) {
 		.append('div').attr('class', 'container') //make a container div to ease the saving process
 		.append("svg")
 		.attr("class", "graph")
+		.style("background-color", 'white')
 		.attr("id", selector.replace("#", "") + "-svg")
 		.attr("width", WIDTH_ALL_GRAPHS)
 		.attr("height", HEIGHT_ALL_GRAPHS)
@@ -60,7 +73,8 @@ function drawSeparateLine(svgChartsRoot) {
 			.attr("x2", i * width + PRECISION_5)
 			.attr("y2", heightSpace)
 			.attr("class", "graph-separate-line")
-			.attr('stroke', '#fff');
+			.attr("stroke-width", 1)
+			.attr('stroke', '#f81d59');
 
 		svgChartsRoot
 			.append("line")
@@ -69,7 +83,8 @@ function drawSeparateLine(svgChartsRoot) {
 			.attr("x2", widthWithPrecision5X)
 			.attr("y2", i * height + PRECISION_5)
 			.attr("class", "graph-separate-line")
-			.attr('stroke', '#fff');
+			.attr("stroke-width", 1)
+			.attr('stroke', '#f81d59');
 	}
 };
 
@@ -106,6 +121,7 @@ function drawGridXLine(gridXGroup, row, borderWidth) {
 		.attr("y2", row * PRECISION_1)
 		.attr("class", "graph-grid")
 		.attr("stroke-width", borderWidth)
+		.attr('stroke', '#f81d59')
 		.attr("transform", `translate(0, ${PRECISION_5})`)
 }
 
@@ -122,5 +138,6 @@ function drawGridYLine(gridYGroup, col, borderWidth) {
 		.attr("y2", height * 4 + bottomMargin)
 		.attr("class", "graph-grid")
 		.attr("stroke-width", borderWidth)
+		.attr('stroke', '#f81d59')
 		.attr("transform", `translate(${PRECISION_5}, 0)`)
 }

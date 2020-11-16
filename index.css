@@ -1,0 +1,45 @@
+.graph {
+  margin-bottom: 8px;
+  border: solid 1px #f81d59;
+  border-radius: 4px;
+  background: white;
+}
+
+.graph-label {
+  font-size: 14px;
+  font-weight: 300;
+  letter-spacing: 0.2px;
+  line-height: 20px;
+  fill: #66687d;
+  stroke: #66687d;
+}
+
+.graph-data-line {
+  fill: none;
+  stroke: #292929;
+  stroke-width: 1.3;
+}
+
+.total-amount-graph-grid {
+  stroke: #bcbcc9;
+}
+
+.total-amount-graph-y-label {
+  font-size: 11px;
+  height: 16px;
+  font-family: Roboto;
+  line-height: 16px;
+  letter-spacing: 0.275px;
+  color: #bcbcc9;
+}
+
+
+.tooltip {
+  font-size: 11px;
+  height: 16px;
+  font-family: Roboto;
+  line-height: 16px;
+  letter-spacing: 0.275px;
+  background-color: #bcbcc9;
+  color: white;
+}
